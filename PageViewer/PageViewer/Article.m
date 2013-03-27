@@ -28,7 +28,7 @@
         // TODO: Add a catch for exceptions.
         NSError *e = nil;
         NSData * data = [NSJSONSerialization dataWithJSONObject: dict options: NSJSONWritingPrettyPrinted error: &e];
-        [self setJsonData:[[NSString alloc] initWithData:data
+        [self setJsonData:[[NSString alloc] initWithData:data // marcin: Bit of controversy - Should you use '[self setJsonData:]' or 'self.jsonData=' notation?
                                                  encoding:NSUTF8StringEncoding]];
     }
     return self;

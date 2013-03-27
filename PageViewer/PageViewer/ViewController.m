@@ -17,7 +17,7 @@
 @end
 
 @implementation ViewController
-
+// marcin: enumerating properties each in separate line is better idea because Ctrl+6 will show them nicely
 @synthesize pageController, articleList;
 
 - (void)viewDidLoad

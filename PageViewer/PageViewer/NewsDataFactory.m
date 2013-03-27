@@ -40,16 +40,16 @@
 }
 
 -(NSArray *)parse:(NSData*)data {
-    NSError *e = nil;
+    NSError *e = nil;// marcin: don't initialize error with nil. see: http://goo.gl/VaKol 
     NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData: data options: NSJSONReadingMutableContainers error: &e];
-    NSMutableArray * results = [[NSMutableArray alloc] initWithCapacity:10];
+    NSMutableArray * results = [[NSMutableArray alloc] initWithCapacity:10];// marcin: IMO this is a waste. Postpone until you sure that jsonArray is not nil
     
     if (!jsonArray) {
         NSLog(@"Error parsing JSON: %@", e);
         return nil;
     } else {
         for(NSDictionary *item in jsonArray) {
-            [results addObject:[[Article alloc] initWithDictionary:item]];
+            [results addObject:[[Article alloc] initWithDictionary:item]];// marcin: I'm not a big fan of this. What if 'item' is not valid and init goes wrong? Should split this piece.
         }
     }
     
